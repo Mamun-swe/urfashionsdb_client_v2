@@ -26,12 +26,12 @@ const LatestProductComponent = ({ products }) => {
         dots: false,
         infinite: true,
         speed: 500,
-        slidesToShow: 5,
+        slidesToShow: 6,
         slidesToScroll: 1,
         initialSlide: 0,
         responsive: [
             {
-                breakpoint: 1250,
+                breakpoint: 1500,
                 settings: {
                     slidesToShow: 4,
                     slidesToScroll: 1
@@ -40,12 +40,19 @@ const LatestProductComponent = ({ products }) => {
             {
                 breakpoint: 992,
                 settings: {
-                    slidesToShow: 3,
+                    slidesToShow: 4,
                     slidesToScroll: 1
                 }
             },
             {
                 breakpoint: 768,
+                settings: {
+                    slidesToShow: 3,
+                    slidesToScroll: 1
+                }
+            },
+            {
+                breakpoint: 576,
                 settings: {
                     slidesToShow: 2,
                     slidesToScroll: 1
@@ -100,7 +107,7 @@ const LatestProductComponent = ({ products }) => {
                                                 </div>
                                             </div>
                                             <Link to={`/product/${product.id}/${replaceWhiteSpace(product.name)}`}>
-                                                <p className="name">{product.name.slice(0, 20)}</p>
+                                                <p className="name mt-2">{product.name.slice(0, 20)}</p>
                                                 <p className="mb-sm-0">৳ {product.selling_price}</p>
                                             </Link>
                                         </div>

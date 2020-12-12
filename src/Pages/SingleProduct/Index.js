@@ -19,6 +19,7 @@ import { addProduct } from '../../Redux/Actions/cartAction';
 import { useForm } from "react-hook-form";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import ReactHtmlParser from 'react-html-parser';
 
 import NavBarComponent from '../../Components/NavBar/NavBar';
 import FooterComponent from '../../Components/Footer/Index';
@@ -394,7 +395,7 @@ const Index = () => {
 
                                                     {/* Product description tab */}
                                                     <Tab eventKey="product_description" title="Product Descriptions">
-                                                        <p>{product.description}</p>
+                                                        <p>{ReactHtmlParser(product.description)}</p>
                                                     </Tab>
 
                                                     {/* Product review tab */}

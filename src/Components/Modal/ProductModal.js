@@ -5,6 +5,7 @@ import { useDispatch } from 'react-redux';
 import { addProduct } from '../../Redux/Actions/cartAction';
 import { Icon } from 'react-icons-kit';
 import { ic_done, ic_close } from 'react-icons-kit/md';
+import ReactHtmlParser from 'react-html-parser';
 
 const ProductModal = (props) => {
     const dispatch = useDispatch()
@@ -63,7 +64,7 @@ const ProductModal = (props) => {
                             <h5 className="mb-2">{props.productinfo.name}</h5>
                             <p className="mb-0">Price: {props.productinfo.selling_price} tk</p>
                             <p className="mb-2">Available Quantity: {props.productinfo.stock}</p>
-                            <p>{props.productinfo.description}</p>
+                            <p>{ReactHtmlParser(props.productinfo.description)}</p>
 
                             {/* Sizes */}
                             <div className="sizes">

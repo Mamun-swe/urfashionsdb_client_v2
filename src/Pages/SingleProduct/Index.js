@@ -51,6 +51,7 @@ const Index = () => {
     }
 
     useEffect(() => {
+        document.title = name
         const user = JSON.parse(localStorage.getItem('user'))
         setLoggedUser(user)
         const fetchProduct = async () => {

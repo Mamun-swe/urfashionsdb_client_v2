@@ -87,8 +87,8 @@ const Index = () => {
                         </form>
                     </div>
 
-                    <div className="col-12 mt-4">
-                        <div className="boder"></div>
+                    <div className="col-12 text-center border-top pt-4 mt-4 company-profile">
+                        <p className="mb-0">Designed & developed by <a href="https://www.colourbangla.com/">Colour Bangla</a></p>
                     </div>
                 </div>
             </div>

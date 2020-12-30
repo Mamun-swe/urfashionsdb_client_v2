@@ -58,11 +58,11 @@ function App() {
             <Route exact path="/privacy-policy" component={PrivacyPolicyIndex} />
             <Route exact path="/returns-policy" component={ReturnsPolicyIndex} />
 
-            <PrivateRoute>
-              <Route path="/account" component={AccountMaster} />
+            <PrivateRoute path="/account" >
+              <AccountMaster />
             </PrivateRoute>
-            {/* <Route exact path="/page-not-found" component={FourOFour} /> */}
-            <Route path="*" component={FourOFour} />
+
+            <Route path="*"><FourOFour message={'Opps! Page not found'} /></Route>
 
           </Switch>
         </ScrollToTop>

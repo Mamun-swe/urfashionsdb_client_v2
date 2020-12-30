@@ -205,6 +205,7 @@ const Index = () => {
                                 <thead>
                                     <tr>
                                         <td><p>Name</p></td>
+                                        <td><p>SKU</p></td>
                                         <td className="text-center"><p>Size</p></td>
                                         <td className="text-center"><p>Color</p></td>
                                         <td className="text-center"><p>Quantity</p></td>
@@ -217,6 +218,7 @@ const Index = () => {
                                         checkOutResponseData.products.map((product, i) =>
                                             <tr key={i}>
                                                 <td><p>{product.name}</p></td>
+                                                <td><p>{product.sku}</p></td>
                                                 <td className="text-center"><p>{product.size}</p></td>
                                                 <td className="text-center">
                                                     <div style={{ background: product.color, width: 20, height: 20, margin: 'auto' }}></div>
@@ -243,8 +245,7 @@ const Index = () => {
                         type="button"
                         className="btn btn-block shadow-none text-black"
                         onClick={downloadOrder}
-                    >Download Boucher
-                            </button>
+                    >Download Boucher</button>
                 </div>
             </div>
         );

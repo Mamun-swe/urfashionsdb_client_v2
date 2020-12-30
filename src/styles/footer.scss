@@ -91,4 +91,17 @@
             font-family: "Roboto", sans-serif;
         }
     }
+
+    // Company Profile
+    .company-profile {
+        p {
+            font-size: 15px;
+            font-weight: 500;
+            font-family: "Roboto", sans-serif;
+            a {
+                color: #d21e2b;
+                text-decoration: none;
+            }
+        }
+    }
 }

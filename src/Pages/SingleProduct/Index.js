@@ -51,6 +51,7 @@ const Index = () => {
     }
 
     useEffect(() => {
+        document.title = name
         const user = JSON.parse(localStorage.getItem('user'))
         setLoggedUser(user)
         document.title="Single Product page"
@@ -85,6 +86,7 @@ const Index = () => {
             price: data.selling_price,
             stock: data.stock,
             image: data.image,
+            sku: data.sku,
             quantity: quantity || 1,
             available_quantity: parseInt(data.quantity),
             color: selectedColor,

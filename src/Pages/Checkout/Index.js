@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import './order.scss';
 import '../../styles/checkout.scss';
 import { useForm } from "react-hook-form";
 import { useSelector, useDispatch } from 'react-redux';
@@ -8,12 +9,14 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { apiURL } from '../../utils/apiURL';
+import { Icon } from 'react-icons-kit';
+import { ic_close, ic_done_all } from 'react-icons-kit/md';
 
 import NavBarComponent from '../../Components/NavBar/NavBar';
 import FooterComponent from '../../Components/Footer/Index';
-import OrderStatusModal from '../../Components/Modal/OrderStatusModal';
 
 import EmptyShoppingCartImg from '../../assets/static/empty_shopping_cart.png';
+import Logo from '../../assets/static/logo.png';
 
 
 toast.configure({ autoClose: 2000 })
@@ -31,7 +34,7 @@ const Index = () => {
     const [shippingErr, setShippingErr] = useState(false)
     const [delivery_charge, setDelivery_charge] = useState('')
     const [isShow, setShow] = useState(false)
-    const [checkResponseOutData, setCheckOutResponseData] = useState()
+    const [checkOutResponseData, setCheckOutResponseData] = useState()
     const [orderCode, setOrderCode] = useState()
     const [couponInfo, setCouponInfo] = useState({})
     const [loggedUser, setLoggedUser] = useState({})
@@ -110,6 +113,7 @@ const Index = () => {
 
         try {
             setLoading(true)
+
             const response = await axios.post(`${apiURL}website/confirmorder`, checkOutData, header)
             if (response.status === 200) {
                 setCheckOutResponseData(checkOutData)
@@ -131,6 +135,119 @@ const Index = () => {
     const hideModal = () => {
         setShow(false)
         history.push('/')
+    }
+
+    const downloadOrder = () => {
+        window.print()
+    }
+
+
+
+    if (isShow) {
+        // Order status
+        return (
+            <div className="card shadow rounded-0 border-0 order-card my-2">
+                <div className="card-header border-bottom bg-white p-3 p-lg-4">
+                    <div className="d-flex mb-2">
+                        <div className="flex-fill text-right">
+                            <h5 className="mb-0 mt-2">Order Status</h5>
+                        </div>
+                        <div className="flex-fill text-right">
+                            <button
+                                type="button"
+                                className="btn rounded-circle shadow-none p-1 bg-light"
+                                onClick={hideModal}
+                            >
+                                <Icon icon={ic_close} size={25} />
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div className="card-body p-3 p-lg-4" id="section-to-print">
+                    <div className="text-center">
+                        <img src={Logo} className="img-fluid" alt="..." />
+                        <br />
+                        <Icon icon={ic_done_all} className="text-success" size={30} />
+                        <h6>thank you, your order has been recived</h6>
+                    </div>
+
+                    <div className="row border m-2 py-3 order-details">
+                        <div className="col-12 col-lg-6">
+                            <p>{checkOutResponseData.name ?? null}</p>
+                            <p>{checkOutResponseData.phone ?? null}</p>
+                            <p className="text-lowercase">{checkOutResponseData.email ?? null}</p>
+                            <p>order code: {orderCode ?? null}</p>
+                        </div>
+                        <div className="col-12 col-lg-6 mt-3 mt-lg-0">
+                            <h6>Delivery info</h6>
+                            <p>delivery method: {checkOutResponseData.delivery_method ?? null}</p>
+                            <p>delivery address: {checkOutResponseData.delivery_address ?? null}</p>
+                            <p>shipping area: {checkOutResponseData.shipping_area ?? null}</p>
+                            <p>courier: {
+                                checkOutResponseData.courier_name && checkOutResponseData.courier_name === 'sundarban_courier' ?
+                                    <span>সুন্দরবন কুরিয়ার</span>
+                                    : checkOutResponseData.courier_name && checkOutResponseData.courier_name === 'kartua_courier' ?
+                                        <span>করতোয়া কুরিয়ার</span>
+                                        : checkOutResponseData.courier_name && checkOutResponseData.courier_name === 'janani_courier' ?
+                                            <span>জননী কুরিয়ার</span>
+                                            : checkOutResponseData.courier_name && checkOutResponseData.courier_name === 'dhaka_home_delivery' ?
+                                                <span>ঢাকা হোম ডেলিভারি</span>
+                                                : checkOutResponseData.courier_name && checkOutResponseData.courier_name === 's_a_paribahan' ?
+                                                    <span>এস এ পরিবহন</span>
+                                                    : null
+                            }</p>
+                        </div>
+                    </div>
+
+                    <div className="row products">
+                        <div className="col-12 px-4 pt-4">
+                            <table className="table table-sm table-borderless">
+                                <thead>
+                                    <tr>
+                                        <td><p>Name</p></td>
+                                        <td className="text-center"><p>Size</p></td>
+                                        <td className="text-center"><p>Color</p></td>
+                                        <td className="text-center"><p>Quantity</p></td>
+                                        <td className="text-right"><p>Price</p></td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {checkOutResponseData.products ?
+                                        checkOutResponseData.products.length > 0 &&
+                                        checkOutResponseData.products.map((product, i) =>
+                                            <tr key={i}>
+                                                <td><p>{product.name}</p></td>
+                                                <td className="text-center"><p>{product.size}</p></td>
+                                                <td className="text-center">
+                                                    <div style={{ background: product.color, width: 20, height: 20, margin: 'auto' }}></div>
+                                                </td>
+                                                <td className="text-center"><p>{product.quantity}</p></td>
+                                                <td className="text-right"><p>{product.quantity * product.price} tk.</p></td>
+                                            </tr>
+                                        ) : null}
+                                </tbody>
+                            </table>
+                        </div>
+                        <div className="col-12 text-right">
+                            <p style={styles.text}>Discount: {checkOutResponseData.discount ?? null}
+                                {checkOutResponseData.discount_type === 'percent' ? ' %' : checkOutResponseData.discount_type === 'fixed' ? ' tk.' : null}</p>
+                            <p style={styles.text}>Sub-total: {checkOutResponseData.total_price ? checkOutResponseData.total_price - checkOutResponseData.delivery_charge : null} tk.</p>
+                            <p style={styles.text}>Delivery charge: {checkOutResponseData.delivery_charge ?? null} tk.</p>
+                            <p style={styles.text}>Total price: {checkOutResponseData.total_price ?? null} tk.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div className="card-footer bg-white border-0 p-4">
+                    <button
+                        type="button"
+                        className="btn btn-block shadow-none text-black"
+                        onClick={downloadOrder}
+                    >Download Boucher
+                            </button>
+                </div>
+            </div>
+        );
     }
 
     return (
@@ -394,18 +511,6 @@ const Index = () => {
                                             </div>
                                         </div>
 
-
-
-                                        {/* Total */}
-                                        {/* <div className="sub-total border-bottom d-flex">
-                                            <div>
-                                                <p>Total</p>
-                                            </div>
-                                            <div className="ml-auto pl-2">
-                                                <p>{subTotal} tk.</p>
-                                            </div>
-                                        </div> */}
-
                                         {/* Delivery Method */}
                                         <div className="delivery-method my-3">
                                             <div className="form-check">
@@ -425,21 +530,13 @@ const Index = () => {
                                                 *Send Money* করতে হবে।
                                             </p>
                                             </div>
-                                            {/* <div className="form-check">
-                                            <input type="checkbox" className="form-check-input" id="kartua" />
-                                            <label className="form-check-label" htmlFor="kartua">Visa, Master Card & Amex</label>
-                                        </div>
-                                        <div className="form-check">
-                                            <input type="checkbox" className="form-check-input" id="kartua" />
-                                            <label className="form-check-label" htmlFor="kartua">Bkash</label>
-                                        </div>
-                                        <div className="form-check">
-                                            <input type="checkbox" className="form-check-input" id="kartua" />
-                                            <label className="form-check-label" htmlFor="kartua">Rocket</label>
-                                        </div> */}
                                         </div>
 
-                                        <button type="submit" className="btn text-white btn-block rounded-0 shadow-none order-place-button">
+                                        <button
+                                            type="submit"
+                                            className="btn text-white btn-block rounded-0 shadow-none order-place-button"
+                                            disabled={loading}
+                                        >
                                             {loading ? <span>Loading...</span> :
                                                 <span>place order</span>
                                             }
@@ -464,10 +561,18 @@ const Index = () => {
                 </div>
             }
             <FooterComponent />
-            {isShow ? <OrderStatusModal data={checkResponseOutData} orderCode={orderCode} hidemodal={hideModal} /> : null}
 
         </div>
     );
 };
 
 export default Index;
+
+const styles = {
+    text: {
+        fontSize: 14,
+        color: '#000',
+        marginBottom: 0,
+        fontWeight: 500
+    }
+}

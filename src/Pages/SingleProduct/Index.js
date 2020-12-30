@@ -53,6 +53,7 @@ const Index = () => {
     useEffect(() => {
         const user = JSON.parse(localStorage.getItem('user'))
         setLoggedUser(user)
+        document.title="Single Product page"
         const fetchProduct = async () => {
             try {
                 setLoading(true)

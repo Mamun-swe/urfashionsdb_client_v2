@@ -118,6 +118,7 @@ const Index = () => {
                 localStorage.removeItem('couponData')
                 localStorage.removeItem('products')
             }
+            console.log(response)
         } catch (error) {
             if (error) {
                 setLoading(false)

@@ -27,6 +27,7 @@ const ProductModal = (props) => {
             stock: data.stock,
             image: data.image,
             quantity: 1,
+            sku: data.sku,
             available_quantity: parseInt(data.quantity),
             size: slectedSize,
             color: selectedColor

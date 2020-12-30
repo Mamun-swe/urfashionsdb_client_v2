@@ -85,6 +85,7 @@ const Index = () => {
             price: data.selling_price,
             stock: data.stock,
             image: data.image,
+            sku: data.sku,
             quantity: quantity || 1,
             available_quantity: parseInt(data.quantity),
             color: selectedColor,

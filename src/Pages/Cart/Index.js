@@ -95,6 +95,7 @@ const Index = () => {
                                     <tr>
                                         <td>product</td>
                                         <td></td>
+                                        <td className="text-center">sku</td>
                                         <td className="text-center">size</td>
                                         <td className="text-center">colour</td>
                                         <td className="text-center">price</td>
@@ -116,6 +117,8 @@ const Index = () => {
                                                 <p className="mb-1">{product.name}</p>
                                                 <small onClick={() => removeFromCart(product)}>Remove</small>
                                             </td>
+                                            {/* SKU */}
+                                            <td className="text-center font-weight-bold text-dark">{product.sku}</td>
                                             {/* Size */}
                                             <td className="text-center font-weight-bold text-dark">{product.size}</td>
                                             {/* Colour */}

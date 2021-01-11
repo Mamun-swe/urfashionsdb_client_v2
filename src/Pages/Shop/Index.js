@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import '../../styles/shop.scss';
+import './style.scss';
 import { Icon } from 'react-icons-kit';
-import { ic_keyboard_arrow_right } from 'react-icons-kit/md';
+import { ic_keyboard_arrow_right, ic_remove_red_eye } from 'react-icons-kit/md';
 import { shoppingBag } from 'react-icons-kit/feather';
-// import { heartO } from 'react-icons-kit/fa';
 import { apiURL } from '../../utils/apiURL';
 import { Link, NavLink, useHistory, useParams } from 'react-router-dom';
 import axios from 'axios';
@@ -160,14 +159,14 @@ const Index = () => {
                 <div>
                     <NavBar categories={categories} />
 
-                    <div className="container-fluid py-3">
+                    <div className="container py-3">
                         <div className="row">
                             <div className="col-12">
                                 <div className="d-flex">
 
 
                                     {/* Desktop Side Menu */}
-                                    <div className="flex-side-menu d-none d-lg-block p-3">
+                                    <div className="flex-side-menu d-none d-lg-block">
                                         <div className="content">
 
                                             <div className="custom-dropdown p-2">
@@ -274,7 +273,7 @@ const Index = () => {
 
 
                                     {/* Main Menu */}
-                                    <div className="flex-fill flex-main-menu p-lg-3">
+                                    <div className="flex-fill flex-main-menu">
                                         {nullProduct ?
                                             <div className="null-content rounded-circle">
                                                 <div className="flex-center flex-column">
@@ -293,68 +292,53 @@ const Index = () => {
                                                             filteredData.slice(0, limit).map((product, i) =>
                                                                 <div className="card shop-card" key={i}>
                                                                     <div className="card-body">
+                                                                        <Link to={`/product/${product.id}/${replaceWhiteSpace(product.name)}`}>
+                                                                            <img src={product.image} className="img-fluid" alt="..." />
+                                                                        </Link>
+
                                                                         {/* Discount Sticker */}
                                                                         {product.selling_price < product.mrp ?
-                                                                            <div className="discount-sticker rounded-circle">
-                                                                                <div className="flex-center flex-column">
-                                                                                    <p>{discount(product.mrp, product.selling_price)}%</p>
-                                                                                    <p>OFF</p>
-                                                                                </div>
+                                                                            <div className="discount-sticker text-center">
+                                                                                <p>OFF {discount(product.mrp, product.selling_price)}%</p>
                                                                             </div>
                                                                             : null}
 
-                                                                        <Link to={`/product/${product.id}/${replaceWhiteSpace(product.name)}`}>
-                                                                            <div className="img-box">
-                                                                                <img src={product.image} className="img-fluid" alt="..." />
-                                                                            </div>
-                                                                        </Link>
-
-
-                                                                        {/* Card footer */}
-                                                                        <div className="custom-footer">
-
-                                                                            {/* Quick View Button */}
+                                                                        {/* Button Group */}
+                                                                        <div className="button-group text-center">
                                                                             <button
                                                                                 type="button"
-                                                                                className="btn shadow-none quick-view-btn"
+                                                                                className="btn shadow-sm icon-btn"
                                                                                 onClick={() => handleModal(product)}
-                                                                            >Quick View</button>
-
-                                                                            {/* Cart button */}
+                                                                            >
+                                                                                <Icon icon={ic_remove_red_eye} size={18} />
+                                                                            </button>
+                                                                            <Link
+                                                                                to="/"
+                                                                                type="button"
+                                                                                className="btn shadow-sm mx-1 content-btn"
+                                                                            >Buy Now</Link>
                                                                             <button
                                                                                 type="button"
-                                                                                className="btn rounded-circle shadow-none cart-add-btn"
+                                                                                className="btn shadow-sm icon-btn"
                                                                                 onClick={() => addToCart(product)}
                                                                             >
                                                                                 <Icon icon={shoppingBag} size={18} />
                                                                             </button>
-
-                                                                            {/* Wish list button */}
-                                                                            {/* <button
-                                                                                type="button"
-                                                                                className="btn rounded-circle shadow-none wish-list-btn"
-                                                                            >
-                                                                                <Icon icon={heartO} size={18} />
-                                                                            </button> */}
-
-                                                                            {/* Product information */}
-                                                                            <Link to={`/product/${product.id}/${replaceWhiteSpace(product.name)}`}>
-                                                                                <div className="info">
-                                                                                    <p className="name">{product.name.slice(0, 25)}</p>
-                                                                                    <div className="d-flex pricing">
-                                                                                        <div>
-                                                                                            <h5>৳ {product.selling_price}</h5>
-                                                                                        </div>
-                                                                                        {product.selling_price < product.mrp ?
-                                                                                            <div className="ml-auto">
-                                                                                                <del>৳ {product.mrp}</del>
-                                                                                            </div>
-                                                                                            : null}
-                                                                                    </div>
-                                                                                </div>
-                                                                            </Link>
                                                                         </div>
                                                                     </div>
+
+                                                                    <div className="card-footer rounded-0">
+                                                                        <Link to={`/product/${product.id}/${replaceWhiteSpace(product.name)}`}>
+                                                                            <p className="name">{product.name.slice(0, 25)}</p>
+                                                                            <div className="d-flex pricing">
+                                                                                <div><p>৳ {product.selling_price}</p></div>
+                                                                                {product.selling_price < product.mrp ?
+                                                                                    <div className="pl-2"><del>৳ {product.mrp}</del></div>
+                                                                                    : null}
+                                                                            </div>
+                                                                        </Link>
+                                                                    </div>
+
                                                                 </div>
                                                             ) :
                                                             // No product 

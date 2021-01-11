@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import '../../styles/latest-product.scss';
-import '../../styles/product.scss';
+import './style.scss';
 import axios from 'axios';
 import { apiURL } from '../../utils/apiURL';
 import Icon from 'react-icons-kit';
 import { shoppingBag } from 'react-icons-kit/feather';
-// import { heartO } from 'react-icons-kit/fa';
+import { ic_remove_red_eye } from 'react-icons-kit/md';
 import { spinner2 } from 'react-icons-kit/icomoon';
 import { useDispatch } from 'react-redux';
 import { addProduct } from '../../Redux/Actions/cartAction';
@@ -148,57 +147,45 @@ const Index = ({ categories }) => {
                                 <div className="card product" key={i}>
                                     <div className="card-body">
                                         <Link to={`/product/${product.id}/${replaceWhiteSpace(product.name)}`}>
-                                            <div className="img-box">
-                                                <img src={product.image} className="img-fluid" alt="..." />
-                                            </div>
+                                            <img src={product.image} className="img-fluid" alt="..." />
                                         </Link>
 
-
-                                        {/* Card footer */}
-                                        <div className="custom-footer">
-
-                                            {/* Quick View Button */}
+                                        {/* Button Group */}
+                                        <div className="button-group text-center">
                                             <button
                                                 type="button"
-                                                className="btn shadow-none quick-view-btn"
+                                                className="btn shadow-sm icon-btn"
                                                 onClick={() => handleModal(product)}
-                                            >Quick View</button>
-
-                                            {/* Cart button */}
+                                            >
+                                                <Icon icon={ic_remove_red_eye} size={18} />
+                                            </button>
+                                            <Link
+                                                to="/"
+                                                type="button"
+                                                className="btn shadow-sm mx-1 content-btn"
+                                            >Buy Now</Link>
                                             <button
                                                 type="button"
-                                                className="btn rounded-circle shadow-none cart-add-btn"
+                                                className="btn shadow-sm icon-btn"
                                                 onClick={() => addToCart(product)}
                                             >
                                                 <Icon icon={shoppingBag} size={18} />
                                             </button>
-
-                                            {/* Wish list button */}
-                                            {/* <button
-                                                    type="button"
-                                                    className="btn rounded-circle shadow-none wish-list-btn"
-                                                >
-                                                    <Icon icon={heartO} size={18} />
-                                                </button> */}
-
-                                            {/* Product information */}
-                                            <Link to={`/product/${product.id}/${replaceWhiteSpace(product.name)}`}>
-                                                <div className="info">
-                                                    <p className="name">{product.name.slice(0, 25)}</p>
-                                                    <div className="d-flex pricing">
-                                                        <div>
-                                                            <h5>৳ {product.selling_price}</h5>
-                                                        </div>
-                                                        {product.selling_price < product.mrp ?
-                                                            <div className="ml-auto">
-                                                                <del>৳ {product.mrp}</del>
-                                                            </div>
-                                                            : null}
-                                                    </div>
-                                                </div>
-                                            </Link>
                                         </div>
                                     </div>
+
+                                    <div className="card-footer rounded-0">
+                                        <Link to={`/product/${product.id}/${replaceWhiteSpace(product.name)}`}>
+                                            <p className="name">{product.name.slice(0, 25)}</p>
+                                            <div className="d-flex pricing">
+                                                <div><p>৳ {product.selling_price}</p></div>
+                                                {product.selling_price < product.mrp ?
+                                                    <div className="pl-2"><del>৳ {product.mrp}</del></div>
+                                                    : null}
+                                            </div>
+                                        </Link>
+                                    </div>
+
                                 </div>
                             )}
                     </div>

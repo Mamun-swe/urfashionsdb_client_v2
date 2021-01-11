@@ -2,10 +2,7 @@ import React, { useState } from 'react';
 import '../../styles/featerd-products.scss';
 import Slider from 'react-slick';
 import { Icon } from 'react-icons-kit';
-import {
-    ic_keyboard_arrow_left,
-    ic_keyboard_arrow_right
-} from 'react-icons-kit/md';
+import { ic_keyboard_arrow_left, ic_keyboard_arrow_right, ic_remove_red_eye } from 'react-icons-kit/md';
 import ProductModalComponent from '../Modal/ProductModal';
 import { Link } from 'react-router-dom';
 
@@ -26,35 +23,28 @@ const LatestProductComponent = ({ products }) => {
         dots: false,
         infinite: true,
         speed: 500,
-        slidesToShow: 6,
+        slidesToShow: 4,
         slidesToScroll: 1,
         initialSlide: 0,
         responsive: [
             {
-                breakpoint: 1500,
-                settings: {
-                    slidesToShow: 4,
-                    slidesToScroll: 1
-                }
-            },
-            {
                 breakpoint: 992,
-                settings: {
-                    slidesToShow: 4,
-                    slidesToScroll: 1
-                }
-            },
-            {
-                breakpoint: 768,
                 settings: {
                     slidesToShow: 3,
                     slidesToScroll: 1
                 }
             },
             {
-                breakpoint: 576,
+                breakpoint: 768,
                 settings: {
                     slidesToShow: 2,
+                    slidesToScroll: 1
+                }
+            },
+            {
+                breakpoint: 576,
+                settings: {
+                    slidesToShow: 1,
                     slidesToScroll: 1
                 }
             }
@@ -92,25 +82,36 @@ const LatestProductComponent = ({ products }) => {
                                 <div className="card rounded-0 border-0" key={i}>
                                     <div className="card-body">
                                         <Link to={`/product/${product.id}/${replaceWhiteSpace(product.name)}`}>
-                                            <div className="img-box">
-                                                <img src={product.image} className="img-fluid" alt="..." />
+                                            <img src={product.image} className="img-fluid" alt="..." />
+                                        </Link>
+
+                                        {/* Button Group */}
+                                        <div className="button-group text-center">
+                                            <button
+                                                type="button"
+                                                className="btn shadow-sm icon-btn"
+                                                onClick={() => handleModal(product)}
+                                            >
+                                                <Icon icon={ic_remove_red_eye} size={18} />
+                                            </button>
+                                            <Link
+                                                to="/"
+                                                type="button"
+                                                className="btn shadow-sm mx-1 content-btn"
+                                            >Buy Now</Link>
+                                        </div>
+                                    </div>
+
+                                    <div className="card-footer rounded-0">
+                                        <Link to={`/product/${product.id}/${replaceWhiteSpace(product.name)}`}>
+                                            <p className="name">{product.name.slice(0, 25)}</p>
+                                            <div className="d-flex pricing">
+                                                <div><p>৳ {product.selling_price}</p></div>
+                                                {product.selling_price < product.mrp ?
+                                                    <div className="pl-2"><del>৳ {product.mrp}</del></div>
+                                                    : null}
                                             </div>
                                         </Link>
-                                        <div className="custom-slider-footer">
-                                            <div className="overlay">
-                                                <div className="flex-center flex-column">
-                                                    <button
-                                                        type="button"
-                                                        className="btn shadow-none"
-                                                        onClick={() => handleModal(product)}
-                                                    >Quick View</button>
-                                                </div>
-                                            </div>
-                                            <Link to={`/product/${product.id}/${replaceWhiteSpace(product.name)}`}>
-                                                <p className="name mt-2">{product.name.slice(0, 20)}</p>
-                                                <p className="mb-sm-0">৳ {product.selling_price}</p>
-                                            </Link>
-                                        </div>
                                     </div>
                                 </div>
                             )}

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import '../../styles/Campaign/style.scss';
+import './style.scss';
 import { useForm } from 'react-hook-form';
 import { Link, useParams } from 'react-router-dom';
 import Axios from 'axios';

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import '../../../styles/Account/account-details.scss';
+import './style.scss';
 import { useForm } from "react-hook-form";
 import Icon from 'react-icons-kit';
 import { ic_perm_media } from 'react-icons-kit/md';

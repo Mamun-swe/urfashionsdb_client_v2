@@ -1,9 +1,9 @@
-@import "../App.scss";
+@import "../../App.scss";
 
 .showroom {
     // Header
     .header {
-        background: url("../assets/static/map.jpg");
+        background: url("../../assets/static/map.jpg");
         background-size: cover;
         background-repeat: no-repeat;
         background-position: center center;
@@ -23,7 +23,7 @@
                 font-weight: 900;
                 margin-bottom: 15px;
                 text-transform: capitalize;
-                font-family: 'Roboto', sans-serif;
+                font-family: "Roboto", sans-serif;
                 font-size: 26px;
 
                 @media (min-width: 576px) {
@@ -38,7 +38,7 @@
             p {
                 color: #fff;
                 font-weight: 700;
-                font-family: 'Roboto', sans-serif;
+                font-family: "Roboto", sans-serif;
                 width: 90%;
                 margin-bottom: 20px;
 
@@ -75,7 +75,7 @@
             color: #000;
             font-weight: 900;
             margin-bottom: 5px;
-            font-family: 'Roboto', sans-serif;
+            font-family: "Roboto", sans-serif;
         }
 
         .map-column {
@@ -93,7 +93,7 @@
                     font-weight: 900;
                     margin-bottom: 8px;
                     text-transform: capitalize;
-                    font-family: 'Roboto', sans-serif;
+                    font-family: "Roboto", sans-serif;
                 }
             }
 
@@ -110,7 +110,7 @@
                         font-weight: 700;
                         margin-bottom: 10px;
                         text-transform: capitalize;
-                        font-family: 'Roboto', sans-serif;
+                        font-family: "Roboto", sans-serif;
                     }
 
                     h6 {
@@ -118,13 +118,13 @@
                         font-weight: 700;
                         margin-bottom: 10px;
                         text-transform: capitalize;
-                        font-family: 'Roboto', sans-serif;
+                        font-family: "Roboto", sans-serif;
                     }
 
                     p {
                         font-size: 13px;
                         margin-bottom: 5px;
-                        font-family: 'Roboto', sans-serif;
+                        font-family: "Roboto", sans-serif;
                     }
                 }
             }

@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import './order.scss';
-import '../../styles/checkout.scss';
+import './style.scss';
 import { useForm } from "react-hook-form";
 import { useSelector, useDispatch } from 'react-redux';
 import { productsList } from '../../Redux/Actions/cartAction';

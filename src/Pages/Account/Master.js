@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { Route, NavLink, useHistory } from 'react-router-dom';
-import '../../styles/Account/master.scss';
+import './style.scss';
 import axios from 'axios';
 import { apiURL } from '../../utils/apiURL';
 

@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import '../../../styles/Account/order.scss';
-import './order.scss'
+import './style.scss';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
 import { useDispatch, useSelector } from 'react-redux';

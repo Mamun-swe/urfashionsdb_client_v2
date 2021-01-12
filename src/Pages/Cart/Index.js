@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import '../../styles/shopping-cart.scss';
+import './style.scss';
 import { Icon } from 'react-icons-kit';
 import axios from 'axios';
 import { apiURL } from '../../utils/apiURL';

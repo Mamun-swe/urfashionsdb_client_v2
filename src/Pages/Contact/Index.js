@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import '../../styles/contact.scss';
+import './style.scss';
 import { Icon } from 'react-icons-kit';
 import { ic_phone, ic_markunread, ic_location_on } from 'react-icons-kit/md';
 import { useForm } from "react-hook-form";

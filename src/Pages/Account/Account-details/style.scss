@@ -1,13 +1,14 @@
-@import "../../App.scss";
+@import "../../../App.scss";
 
-.account-details, .password-cahnge {
+.account-details,
+.password-cahnge {
     .header {
         margin-bottom: 16px;
 
         h5 {
             font-weight: 300;
             text-transform: uppercase;
-            font-family: 'Roboto', sans-serif;
+            font-family: "Roboto", sans-serif;
         }
     }
 
@@ -17,12 +18,12 @@
                 color: #555;
                 font-size: 13px;
                 margin-bottom: 5px;
-                font-family: 'Roboto', sans-serif;
+                font-family: "Roboto", sans-serif;
             }
 
             .form-control {
                 font-size: 14px;
-                font-family: 'Roboto', sans-serif;
+                font-family: "Roboto", sans-serif;
             }
 
             .form-control:focus {
@@ -39,7 +40,7 @@
                     background: #fff;
                     text-transform: uppercase;
                     font-size: 11px;
-                    font-family: 'Roboto', sans-serif;
+                    font-family: "Roboto", sans-serif;
                     padding-left: 5px;
                     padding-right: 5px;
                 }
@@ -113,7 +114,7 @@
                 padding-left: 20px;
                 padding-right: 20px;
                 text-transform: uppercase;
-                font-family: 'Roboto', sans-serif;
+                font-family: "Roboto", sans-serif;
                 background: $secondary-color;
                 color: #fff;
             }

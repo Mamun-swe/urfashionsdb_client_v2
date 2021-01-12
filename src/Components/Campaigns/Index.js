@@ -1,5 +1,5 @@
 import React from 'react';
-import '../../styles/components/campaign-components/style.scss';
+import './style.scss';
 import Slider from 'react-slick';
 import { Link } from 'react-router-dom';
 import Icon from 'react-icons-kit';

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import '../../styles/faq.scss';
+import './style.scss';
 import Tab from 'react-bootstrap/Tab';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';

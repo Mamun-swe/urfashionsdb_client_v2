@@ -1,4 +1,4 @@
-@import "../App.scss";
+@import "../../App.scss";
 
 .Auth {
     width: 100%;
@@ -30,7 +30,7 @@
 
             h4 {
                 font-weight: 700;
-                font-family: 'Roboto', sans-serif;
+                font-family: "Roboto", sans-serif;
             }
         }
 
@@ -38,12 +38,12 @@
             padding-bottom: 40px;
 
             small {
-                font-family: 'Roboto', sans-serif;
+                font-family: "Roboto", sans-serif;
             }
 
             .form-control {
                 font-size: 14px;
-                font-family: 'Roboto', sans-serif;
+                font-family: "Roboto", sans-serif;
             }
 
             .form-control:focus {
@@ -55,13 +55,13 @@
                 font-weight: 700;
                 font-size: 15px;
                 background: $secondary-color;
-                font-family: 'Roboto', sans-serif;
+                font-family: "Roboto", sans-serif;
             }
 
             p {
                 font-size: 15px;
                 margin-bottom: 0;
-                font-family: 'Roboto', sans-serif;
+                font-family: "Roboto", sans-serif;
 
                 a {
                     color: $secondary-color;
@@ -74,7 +74,7 @@
                 font-weight: 900;
                 text-align: center;
                 margin-bottom: 20px;
-                font-family: 'Roboto', sans-serif;
+                font-family: "Roboto", sans-serif;
             }
         }
 

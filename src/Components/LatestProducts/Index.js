@@ -1,17 +1,21 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, createRef } from 'react';
 import './style.scss';
 import axios from 'axios';
-import { apiURL } from '../../utils/apiURL';
 import Icon from 'react-icons-kit';
+import { Link, useHistory } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { apiURL } from '../../utils/apiURL';
+import Skeleton from 'react-loading-skeleton';
 import { shoppingBag } from 'react-icons-kit/feather';
 import { ic_remove_red_eye } from 'react-icons-kit/md';
-import { spinner2 } from 'react-icons-kit/icomoon';
-import { useDispatch } from 'react-redux';
 import { addProduct } from '../../Redux/Actions/cartAction';
 import ProductModalComponent from '../Modal/ProductModal';
-import { Link } from 'react-router-dom';
+
 
 const Index = ({ categories }) => {
+    const refs = createRef()
+    const history = useHistory()
+    const windowWidth = window.innerWidth
     const [modalShow, setModalShow] = useState(false)
     const [modalData, setModalData] = useState({})
     const [loading, setLoading] = useState(false)
@@ -20,6 +24,7 @@ const Index = ({ categories }) => {
     const [id, setId] = useState()
     const productsPerPage = 18
     const dispatch = useDispatch()
+    const [fakeArr] = useState([1, 2, 3, 4, 5, 6, 7, 8])
 
     useEffect(() => {
         const fetchProducts = async () => {
@@ -100,6 +105,12 @@ const Index = ({ categories }) => {
         dispatch(addProduct(newData))
     }
 
+    // Single Sale
+    const singleSale = data => {
+        addToCart(data)
+        history.push('/checkout')
+    }
+
     // Replace white space with (_)
     const replaceWhiteSpace = (data) => {
         let productName = data
@@ -136,14 +147,23 @@ const Index = ({ categories }) => {
                     </div>
                 </div>
 
-                {/* Products */}
-                <div className="row products mt-4">
-                    <div className="col-12">
-                        {loading ?
-                            <div className="text-center py-4">
-                                <Icon icon={spinner2} size={25} className="spin" />
+
+                {loading ?
+                    // Pre-loader
+                    <div className="row">
+                        {fakeArr.map((k) =>
+                            <div className="col-12 col-sm-6 col-md-4 col-lg-3 p-2" key={k}>
+                                <div className="card border-0" ref={refs}>
+                                    <Skeleton animation={true} count={1} width={refs.innerWidth} height={windowWidth > 1210 ? 315 : windowWidth > 992 ? 350 : windowWidth > 768 ? 247 : 270} />
+                                </div>
                             </div>
-                            : products && products.length > 0 && products.slice(0, limit).map((product, i) =>
+                        )}
+                    </div>
+                    :
+
+                    <div className="row products mt-4">
+                        <div className="col-12">
+                            {products && products.length > 0 && products.slice(0, limit).map((product, i) =>
                                 <div className="card product" key={i}>
                                     <div className="card-body">
                                         <Link to={`/product/${product.id}/${replaceWhiteSpace(product.name)}`}>
@@ -159,11 +179,11 @@ const Index = ({ categories }) => {
                                             >
                                                 <Icon icon={ic_remove_red_eye} size={18} />
                                             </button>
-                                            <Link
-                                                to="/"
+                                            <button
                                                 type="button"
                                                 className="btn shadow-sm mx-1 content-btn"
-                                            >Buy Now</Link>
+                                                onClick={() => singleSale(product)}
+                                            >Buy Now</button>
                                             <button
                                                 type="button"
                                                 className="btn shadow-sm icon-btn"
@@ -188,14 +208,15 @@ const Index = ({ categories }) => {
 
                                 </div>
                             )}
-                    </div>
-
-                    {products && products.length <= limit ? null :
-                        <div className="col-12 text-center">
-                            <button type="button" className="btn shadow-none load-more-btn" onClick={() => setLimit(limit + productsPerPage)}>Load More</button>
                         </div>
-                    }
-                </div>
+
+                        {products && products.length <= limit ? null :
+                            <div className="col-12 text-center">
+                                <button type="button" className="btn shadow-none load-more-btn" onClick={() => setLimit(limit + productsPerPage)}>Load More</button>
+                            </div>
+                        }
+                    </div>
+                }
             </div>
 
             {/* Product Modal */}

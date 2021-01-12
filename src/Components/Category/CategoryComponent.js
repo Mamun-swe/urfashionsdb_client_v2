@@ -1,5 +1,5 @@
 import React from 'react';
-import '../../styles/category-component.scss';
+import './style.scss';
 import { Link } from 'react-router-dom';
 
 const CategoryComponent = ({ categories }) => {

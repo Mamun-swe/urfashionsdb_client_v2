@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import '../../styles/auth.scss';
+import './style.scss';
 import axios from 'axios';
 import { apiURL } from '../../utils/apiURL';
 import { useForm } from "react-hook-form";

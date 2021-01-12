@@ -1,30 +1,33 @@
-import React, { useEffect, useState } from 'react';
-import '../../styles/search-result.scss';
-import '../../styles/product.scss';
-import queryString from 'query-string';
-import { apiURL } from '../../utils/apiURL';
+import React, { useEffect, useState, createRef } from 'react';
+import './style.scss';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import queryString from 'query-string';
 import { Icon } from 'react-icons-kit';
-import { shoppingBag } from 'react-icons-kit/feather';
-// import { heartO } from 'react-icons-kit/fa';
+import { Link, useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+import { apiURL } from '../../utils/apiURL';
+import Skeleton from 'react-loading-skeleton';
+import { shoppingBag } from 'react-icons-kit/feather';
+import { ic_remove_red_eye } from 'react-icons-kit/md';
 import { addProduct } from '../../Redux/Actions/cartAction';
 
 import NavBarComponent from '../../Components/NavBar/NavBar';
 import FooterComponent from '../../Components/Footer/Index';
 import ProductModalComponent from '../../Components/Modal/ProductModal';
-import LoadingComponent from '../../Components/Loader';
 
 import NotFoundImg from '../../assets/static/empty_shopping_cart.png';
 
 const Index = (props) => {
+    const refs = createRef()
+    const history = useHistory()
+    const windowWidth = window.innerWidth
     const [isLoading, setLoading] = useState(true)
     const [products, setProducts] = useState([])
     const [modalShow, setModalShow] = useState(false)
     const [modalData, setModalData] = useState({})
     const value = queryString.parse(props.location.search).query
     const dispatch = useDispatch()
+    const [fakeArr] = useState([1, 2, 3, 4, 5, 6, 7, 8])
 
     useEffect(() => {
         const filterProducts = async () => {
@@ -68,6 +71,12 @@ const Index = (props) => {
         dispatch(addProduct(newData))
     }
 
+    // Single Sale
+    const singleSale = data => {
+        addToCart(data)
+        history.push('/checkout')
+    }
+
     // Replace white space with (_)
     const replaceWhiteSpace = (data) => {
         let productName = data
@@ -82,114 +91,117 @@ const Index = (props) => {
         return percenteg
     }
 
-    return (
-        <div className="search-result">
-            {isLoading ? <LoadingComponent /> :
-                <div>
-                    <NavBarComponent />
+    // Pre-loading
+    if (isLoading) {
+        return (
+            <div className="search-result">
+                <NavBarComponent />
+                <div className="container py-4">
+                    <div className="row">
+                        <div className="col-12 text-center mb-3">
+                            <Skeleton animation={true} count={1} width={windowWidth > 576 ? 450 : 280} height={40} />
+                        </div>
 
-
-                    <div className="container py-4">
-                        <div className="row">
-                            <div className="col-12 text-center mb-3">
-                                <h5>You search for: {value}</h5>
-                            </div>
-
-                            {/* Products */}
-                            {products.length > 0 ?
-                                <div className="col-12">
-                                    {products.map((product, i) =>
-                                        <div className="card product" key={i}>
-                                            <div className="card-body">
-                                                {/* Discount Sticker */}
-                                                {product.selling_price < product.mrp ?
-                                                    <div className="discount-sticker rounded-circle">
-                                                        <div className="flex-center flex-column">
-                                                            <p>{discount(product.mrp, product.selling_price)}%</p>
-                                                            <p>OFF</p>
-                                                        </div>
-                                                    </div>
-                                                    : null}
-
-                                                <Link to={`/product/${product.id}/${replaceWhiteSpace(product.name)}`}>
-                                                    <div className="img-box">
-                                                        <img src={product.image} className="img-fluid" alt="..." />
-                                                    </div>
-                                                </Link>
-
-
-                                                {/* Card footer */}
-                                                <div className="custom-footer">
-
-                                                    {/* Quick View Button */}
-                                                    <button
-                                                        type="button"
-                                                        className="btn shadow-none quick-view-btn"
-                                                        onClick={() => handleModal(product)}
-                                                    >Quick View</button>
-
-                                                    {/* Cart button */}
-                                                    <button
-                                                        type="button"
-                                                        className="btn rounded-circle shadow-none cart-add-btn"
-                                                        onClick={() => addToCart(product)}
-                                                    >
-                                                        <Icon icon={shoppingBag} size={18} />
-                                                    </button>
-
-                                                    {/* Wish list button */}
-                                                    {/* <button
-                                                                type="button"
-                                                                className="btn rounded-circle shadow-none wish-list-btn"
-                                                            >
-                                                                <Icon icon={heartO} size={18} />
-                                                            </button> */}
-
-                                                    {/* Product information */}
-                                                    <Link to={`/product/${product.id}/${replaceWhiteSpace(product.name)}`}>
-                                                        <div className="info">
-                                                            <p className="name">{product.name.slice(0, 25)}</p>
-                                                            <div className="d-flex pricing">
-                                                                <div>
-                                                                    <h5>৳ {product.selling_price}</h5>
-                                                                </div>
-                                                                {product.selling_price < product.mrp ?
-                                                                    <div className="ml-auto">
-                                                                        <del>৳ {product.mrp}</del>
-                                                                    </div>
-                                                                    : null}
-                                                            </div>
-                                                        </div>
-                                                    </Link>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    )}
+                        <div className="col-12">
+                            {fakeArr.map((i) =>
+                                <div className="card product" ref={refs} key={i}>
+                                    <Skeleton animation={true} count={1} width={refs.innerWidth} height={windowWidth > 1210 ? 315 : windowWidth > 992 ? 350 : windowWidth > 768 ? 247 : 200} />
                                 </div>
-                                :
-                                <div className="col-12 text-center four-o-four mt-3">
-                                    <img src={NotFoundImg} className="img-fluid" alt="..." />
-                                    <h5 className="mt-3">0 Results</h5>
-                                    <Link to="/" type="button" className="btn shadow-none">Back To Shopping</Link>
-                                </div>
-                            }
+                            )}
                         </div>
                     </div>
-
-                    {/* Product Modal */}
-                    {modalShow ?
-                        <ProductModalComponent
-                            productinfo={modalData}
-                            show={modalShow}
-                            hidemodal={hideModal}
-                            onHide={() => setModalShow(false)}
-                        />
-                        : null}
-
-
-                    <FooterComponent />
                 </div>
-            }
+            </div>
+        )
+    }
+
+    return (
+        <div className="search-result">
+            <NavBarComponent />
+
+            <div className="container py-4">
+                <div className="row">
+                    <div className="col-12 text-center mb-3">
+                        <h5>You search for: {value}</h5>
+                    </div>
+
+                    {/* Products */}
+                    {products.length > 0 ?
+                        <div className="col-12">
+                            {products.map((product, i) =>
+                                <div className="card product" key={i}>
+                                    <div className="card-body">
+                                        <Link to={`/product/${product.id}/${replaceWhiteSpace(product.name)}`}>
+                                            <img src={product.image} className="img-fluid" alt="..." />
+                                        </Link>
+
+                                        {/* Discount Sticker */}
+                                        {product.selling_price < product.mrp ?
+                                            <div className="discount-sticker text-center">
+                                                <p>OFF {discount(product.mrp, product.selling_price)}%</p>
+                                            </div>
+                                            : null}
+
+                                        {/* Button Group */}
+                                        <div className="button-group text-center">
+                                            <button
+                                                type="button"
+                                                className="btn shadow-sm icon-btn"
+                                                onClick={() => handleModal(product)}
+                                            >
+                                                <Icon icon={ic_remove_red_eye} size={18} />
+                                            </button>
+                                            <button
+                                                type="button"
+                                                className="btn shadow-sm mx-1 content-btn"
+                                                onClick={() => singleSale(product)}
+                                            >Buy Now</button>
+                                            <button
+                                                type="button"
+                                                className="btn shadow-sm icon-btn"
+                                                onClick={() => addToCart(product)}
+                                            >
+                                                <Icon icon={shoppingBag} size={18} />
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                    <div className="card-footer rounded-0">
+                                        <Link to={`/product/${product.id}/${replaceWhiteSpace(product.name)}`}>
+                                            <p className="name">{product.name.slice(0, 25)}</p>
+                                            <div className="d-flex pricing">
+                                                <div><p>৳ {product.selling_price}</p></div>
+                                                {product.selling_price < product.mrp ?
+                                                    <div className="pl-2"><del>৳ {product.mrp}</del></div>
+                                                    : null}
+                                            </div>
+                                        </Link>
+                                    </div>
+                                </div>
+                            )}
+                        </div>
+                        :
+                        <div className="col-12 text-center four-o-four mt-3">
+                            <img src={NotFoundImg} className="img-fluid" alt="..." />
+                            <h5 className="mt-3">0 Results</h5>
+                            <Link to="/" type="button" className="btn shadow-none">Back To Shopping</Link>
+                        </div>
+                    }
+                </div>
+            </div>
+
+            {/* Product Modal */}
+            {modalShow ?
+                <ProductModalComponent
+                    productinfo={modalData}
+                    show={modalShow}
+                    hidemodal={hideModal}
+                    onHide={() => setModalShow(false)}
+                />
+                : null}
+
+
+            <FooterComponent />
         </div>
     );
 };

@@ -1,10 +1,7 @@
 import React, { useState } from 'react';
-import '../../styles/footer.scss';
+import './style.scss';
 import { Icon } from 'react-icons-kit';
-import {
-    facebook,
-    instagram
-} from 'react-icons-kit/icomoon'
+import { facebook, instagram } from 'react-icons-kit/icomoon'
 import Logo from '../../assets/static/logo.png';
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';

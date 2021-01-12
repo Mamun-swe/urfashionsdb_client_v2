@@ -1,8 +1,8 @@
-@import "../App.scss";
+@import "../../App.scss";
 
 .contact {
     .header {
-        background: url("../assets/static/contact-us-banner.jpg");
+        background: url("../../assets/static/contact-us-banner.jpg");
         background-size: cover;
         background-repeat: no-repeat;
         background-position: center center;
@@ -22,7 +22,7 @@
                 font-weight: 900;
                 margin-bottom: 15px;
                 text-transform: capitalize;
-                font-family: 'Roboto', sans-serif;
+                font-family: "Roboto", sans-serif;
                 font-size: 26px;
 
                 @media (min-width: 576px) {
@@ -37,7 +37,7 @@
             p {
                 color: #fff;
                 font-weight: 700;
-                font-family: 'Roboto', sans-serif;
+                font-family: "Roboto", sans-serif;
                 width: 90%;
                 margin-bottom: 20px;
 
@@ -83,7 +83,7 @@
                 font-size: 15px;
                 margin-bottom: 0;
                 text-transform: capitalize;
-                font-family: 'Roboto', sans-serif;
+                font-family: "Roboto", sans-serif;
             }
 
             small {
@@ -101,13 +101,13 @@
                         color: #000;
                         font-weight: 900;
                         margin-bottom: 5px;
-                        font-family: 'Roboto', sans-serif;
+                        font-family: "Roboto", sans-serif;
                     }
 
                     p {
                         font-size: 15px;
                         line-height: 1.8rem;
-                        font-family: 'Roboto', sans-serif;
+                        font-family: "Roboto", sans-serif;
                     }
                 }
 
@@ -118,7 +118,7 @@
                             min-height: 45px;
                             padding-left: 15px;
                             border: 1px solid #dfdfdf;
-                            font-family: 'Roboto', sans-serif;
+                            font-family: "Roboto", sans-serif;
                         }
 
                         .danger-border {
@@ -131,7 +131,7 @@
                             font-weight: 700;
                             padding-left: 20px;
                             padding-right: 20px;
-                            font-family: 'Roboto', sans-serif;
+                            font-family: "Roboto", sans-serif;
                             background: $secondary-color;
                         }
                     }
@@ -152,7 +152,7 @@
 
         h1 {
             font-weight: 900;
-            font-family: 'Roboto', sans-serif;
+            font-family: "Roboto", sans-serif;
 
             @media (max-width: 576px) {
                 font-size: 30px;
@@ -165,7 +165,7 @@
             margin: auto;
             font-size: 15px;
             background-image: 1.5rem;
-            font-family: 'Roboto', sans-serif;
+            font-family: "Roboto", sans-serif;
 
             @media (min-width: 576px) {
                 width: 70%;

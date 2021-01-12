@@ -1,4 +1,4 @@
-@import "../App.scss";
+@import "../../App.scss";
 
 .mega-menu {
     padding: 30px 20px;
@@ -12,7 +12,7 @@
         font-weight: 700;
         color: $secondary-color;
         text-transform: capitalize;
-        font-family: 'Roboto', sans-serif;
+        font-family: "Roboto", sans-serif;
     }
 
     a {
@@ -21,7 +21,7 @@
         font-size: 14px;
         margin-bottom: 3px;
         text-transform: capitalize;
-        font-family: 'Roboto', sans-serif;
+        font-family: "Roboto", sans-serif;
     }
 
     a:hover {

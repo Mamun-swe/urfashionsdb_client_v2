@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import "../../styles/search.scss";
+import "./style.scss";
 import axios from 'axios';
 import { Icon } from 'react-icons-kit';
 import { apiURL } from '../../utils/apiURL';

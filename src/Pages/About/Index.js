@@ -1,5 +1,5 @@
 import React from 'react';
-import '../../styles/about-us.scss';
+import './style.scss';
 
 import NavbarComponent from '../../Components/NavBar/NavBar';
 import FooterComponent from '../../Components/Footer/Index';

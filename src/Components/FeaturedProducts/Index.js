@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import '../../styles/featerd-products.scss';
+import './style.scss';
 import Slider from 'react-slick';
 import { Icon } from 'react-icons-kit';
 import { ic_keyboard_arrow_left, ic_keyboard_arrow_right, ic_remove_red_eye } from 'react-icons-kit/md';
@@ -86,7 +86,7 @@ const LatestProductComponent = ({ products }) => {
                                         </Link>
 
                                         {/* Button Group */}
-                                        <div className="button-group text-center">
+                                        <div className="button-group text-right pr-3">
                                             <button
                                                 type="button"
                                                 className="btn shadow-sm icon-btn"
@@ -94,11 +94,6 @@ const LatestProductComponent = ({ products }) => {
                                             >
                                                 <Icon icon={ic_remove_red_eye} size={18} />
                                             </button>
-                                            <Link
-                                                to="/"
-                                                type="button"
-                                                className="btn shadow-sm mx-1 content-btn"
-                                            >Buy Now</Link>
                                         </div>
                                     </div>
 

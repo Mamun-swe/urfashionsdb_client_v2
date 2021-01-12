@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
+import './style.scss';
 import { useForm } from "react-hook-form";
-import '../../../styles/Account/account-details.scss';
 import axios from 'axios';
 import { apiURL } from '../../../utils/apiURL';
 import { toast } from 'react-toastify';

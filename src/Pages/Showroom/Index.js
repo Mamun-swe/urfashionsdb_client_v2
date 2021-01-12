@@ -1,5 +1,5 @@
 import React from 'react';
-import '../../styles/showroom.scss';
+import './style.scss';
 import { Icon } from 'react-icons-kit';
 import { phoneHangUp } from 'react-icons-kit/icomoon';
 import NavbarComponent from '../../Components/NavBar/NavBar';

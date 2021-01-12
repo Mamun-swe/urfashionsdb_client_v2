@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import '../../styles/navbar.scss';
+import './style.scss';
 import axios from 'axios';
 import { Icon } from 'react-icons-kit';
 import { apiURL } from '../../utils/apiURL';

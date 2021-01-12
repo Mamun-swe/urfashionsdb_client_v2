@@ -1,8 +1,8 @@
-@import "../App.scss";
+@import "../../App.scss";
 
 .about-us {
     .header {
-        background: url("../assets/static/about_us.jpg");
+        background: url("../../assets/static/about_us.jpg");
         background-size: cover;
         background-repeat: no-repeat;
         background-position: center center;
@@ -22,7 +22,7 @@
                 font-weight: 900;
                 margin-bottom: 15px;
                 text-transform: capitalize;
-                font-family: 'Roboto', sans-serif;
+                font-family: "Roboto", sans-serif;
                 font-size: 26px;
 
                 @media (min-width: 576px) {
@@ -37,7 +37,7 @@
             p {
                 color: #fff;
                 font-weight: 700;
-                font-family: 'Roboto', sans-serif;
+                font-family: "Roboto", sans-serif;
                 width: 90%;
                 margin-bottom: 20px;
 
@@ -72,7 +72,7 @@
             color: #000;
             font-weight: 900;
             margin-bottom: 30px;
-            font-family: 'Roboto', sans-serif;
+            font-family: "Roboto", sans-serif;
 
             @media (max-width: 576px) {
                 font-size: 25px;
@@ -82,7 +82,7 @@
         p {
             font-size: 15px;
             line-height: 1.8rem;
-            font-family: 'Roboto', sans-serif;
+            font-family: "Roboto", sans-serif;
         }
     }
 }

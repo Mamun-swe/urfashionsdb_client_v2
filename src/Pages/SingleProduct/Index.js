@@ -5,7 +5,7 @@ import axios from 'axios';
 import { apiURL } from '../../utils/apiURL';
 import { Icon } from 'react-icons-kit';
 import { plus, minus } from 'react-icons-kit/ionicons';
-import { ic_access_time, ic_directions_car, ic_done } from 'react-icons-kit/md';
+import { ic_access_time, ic_directions_car, ic_done, ic_phone } from 'react-icons-kit/md';
 import { user_circle } from 'react-icons-kit/ikons/user_circle';
 import { shoppingBag } from 'react-icons-kit/feather';
 import { star } from 'react-icons-kit/ikons/star';
@@ -120,6 +120,12 @@ const Index = () => {
         }
     }
 
+    // Single Sale
+    const singleSale = data => {
+        addToCart(data)
+        history.push('/checkout')
+    }
+
 
     // Search by tag
     const searchByTag = (data) => {
@@ -158,6 +164,15 @@ const Index = () => {
                                     <Skeleton className="my-2" animation={true} count={1} width={windowWidth > 576 ? 450 : 280} height={70} />
                                     <Skeleton className="my-2" animation={true} count={1} width={windowWidth > 576 ? 350 : 220} height={30} />
                                     <Skeleton className="my-2" animation={true} count={1} width={windowWidth > 576 ? 350 : 220} height={30} />
+                                    <Skeleton animation={true} count={1} width={windowWidth > 576 ? 380 : 250} height={40} />
+                                    <div className="d-flex my-2" style={{ width: windowWidth > 576 ? 380 : 250 }}>
+                                        <div className="flex-fill">
+                                            <Skeleton animation={true} count={1} width={windowWidth > 576 ? 185 : 120} height={40} />
+                                        </div>
+                                        <div className="flex-fill pl-2">
+                                            <Skeleton animation={true} count={1} width={windowWidth > 576 ? 185 : 120} height={40} />
+                                        </div>
+                                    </div>
                                     <Skeleton animation={true} count={1} width={windowWidth > 576 ? 380 : 250} height={40} />
                                 </div>
                             </div>
@@ -292,7 +307,7 @@ const Index = () => {
                                                                         onClick={() => setSelectedColor(color)}
                                                                     >
                                                                         {color === selectedColor ?
-                                                                            <div className="overlay">
+                                                                            <div className="overlay border">
                                                                                 <div className="flex-center flex-column">
                                                                                     <Icon icon={ic_done} size={20} style={{ color: '#fff' }} />
                                                                                 </div>
@@ -327,17 +342,36 @@ const Index = () => {
                                                             <Icon icon={plus} />
                                                         </button>
                                                     </div>
-                                                    <div className="pl-2">
+                                                </div>
+
+                                                <div className="d-flex pt-2">
+                                                    <div className="flex-fill">
                                                         <button
                                                             type="button"
-                                                            className="btn shadow-none rounded-0 border-0 cart-btn"
+                                                            className="btn shadow-none btn-block rounded-0 border-0 cart-btn"
                                                             onClick={() => addToCart(product)}
                                                         >Add to Cart</button>
                                                     </div>
+                                                    <div className="flex-fill pl-2">
+                                                        <button
+                                                            type="button"
+                                                            className="btn btn-block btn-primary shadow-none px-5 rounded-0 border-0 cart-btn"
+                                                            onClick={() => singleSale(product)}
+                                                        >Buy Now</button>
+                                                    </div>
+                                                </div>
+
+                                                <div className="d-flex pt-2">
+                                                    <a
+                                                        type="button"
+                                                        href="tel: 01918836801"
+                                                        className="btn call-btn btn-block shadow-none rounded-0 border-0"
+                                                    ><Icon icon={ic_phone} size={20} /> 01918836801</a>
                                                 </div>
                                             </div>
 
                                         </div>
+
                                     </div>
                                 </div>
                             </div>

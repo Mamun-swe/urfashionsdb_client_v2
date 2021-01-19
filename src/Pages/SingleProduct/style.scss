@@ -165,6 +165,15 @@
                 background: $secondary-color;
                 font-family: "Roboto", sans-serif;
             }
+
+            .call-btn {
+                color: #fff;
+                font-size: 14px;
+                font-weight: 700;
+                padding: 8px 20px;
+                background: $danger-color;
+                font-family: "Roboto", sans-serif;
+            }
         }
     }
 

@@ -226,7 +226,7 @@ const Index = () => {
                                                     src: productImage,
                                                     // width: window.innerWidth > 992 ? 400 : 300,
                                                     // height: window.innerWidth > 992 ? 520 : 350
-                                                    width: window.innerWidth > 992 ? 400 : 325,
+                                                    width: window.innerWidth > 992 ? 400 : 300,
                                                     height: window.innerWidth > 992 ? 493 : 400
                                                 },
                                                 style: { margin: 'auto' },

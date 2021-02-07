@@ -63,9 +63,11 @@ const Index = () => {
                 setSelectedColor(response.data.color[0])
                 setLoading(false)
                 setTags(response.data.tags.split(','))
+                console.log(response.data);
             } catch (error) {
-                if (error.response) {
+                if (error) {
                     setLoading(false)
+                    console.log(error.response);
                     setError(error.response.data.message)
                 }
             }

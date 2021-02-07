@@ -31,7 +31,6 @@ const Index = () => {
                     setCategories(response.data.categories)
                     setFeaturedProducts(response.data.featuredProducts)
                     setLoading(false)
-                    console.log(response.data);
                 }
             } catch (error) {
                 if (error) {

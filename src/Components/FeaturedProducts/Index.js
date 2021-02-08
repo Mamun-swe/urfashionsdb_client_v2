@@ -84,9 +84,11 @@ const LatestProductComponent = ({ products }) => {
                                         <Link to={`/product/${product.id}/${replaceWhiteSpace(product.name)}`}>
                                             <img src={product.image} className="img-fluid" alt="..." />
                                         </Link>
+                                    </div>
 
+                                    <div className="card-footer rounded-0 text-center">
                                         {/* Button Group */}
-                                        <div className="button-group text-right pr-3">
+                                        <div className="button-group">
                                             <button
                                                 type="button"
                                                 className="btn shadow-sm icon-btn"
@@ -95,12 +97,10 @@ const LatestProductComponent = ({ products }) => {
                                                 <Icon icon={ic_remove_red_eye} size={18} />
                                             </button>
                                         </div>
-                                    </div>
 
-                                    <div className="card-footer rounded-0">
                                         <Link to={`/product/${product.id}/${replaceWhiteSpace(product.name)}`}>
                                             <p className="name">{product.name.slice(0, 25)}</p>
-                                            <div className="d-flex pricing">
+                                            <div className="d-flex justify-content-center pricing">
                                                 <div><p>৳ {product.selling_price}</p></div>
                                                 {product.selling_price < product.mrp ?
                                                     <div className="pl-2"><del>৳ {product.mrp}</del></div>

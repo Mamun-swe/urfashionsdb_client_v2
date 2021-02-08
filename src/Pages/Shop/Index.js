@@ -345,9 +345,11 @@ const Index = () => {
                                                                             <p>OFF {discount(product.mrp, product.selling_price)}%</p>
                                                                         </div>
                                                                         : null}
+                                                                </div>
 
+                                                                <div className="card-footer text-center rounded-0">
                                                                     {/* Button Group */}
-                                                                    <div className="button-group text-center">
+                                                                    <div className="button-group mb-1">
                                                                         <button
                                                                             type="button"
                                                                             className="btn shadow-sm icon-btn"
@@ -368,12 +370,10 @@ const Index = () => {
                                                                             <Icon icon={shoppingBag} size={18} />
                                                                         </button>
                                                                     </div>
-                                                                </div>
 
-                                                                <div className="card-footer rounded-0">
                                                                     <Link to={`/product/${product.id}/${replaceWhiteSpace(product.name)}`}>
                                                                         <p className="name">{product.name.slice(0, 25)}</p>
-                                                                        <div className="d-flex pricing">
+                                                                        <div className="d-flex justify-content-center pricing">
                                                                             <div><p>৳ {product.selling_price}</p></div>
                                                                             {product.selling_price < product.mrp ?
                                                                                 <div className="pl-2"><del>৳ {product.mrp}</del></div>

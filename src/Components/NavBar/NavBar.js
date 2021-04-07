@@ -125,6 +125,9 @@ const NavBar = () => {
                                         </li>
                                         <li><NavLink exact activeClassName="is-Active" to="/contact">contact</NavLink></li>
                                         <li><NavLink exact activeClassName="is-Active" to="/sign-in">my account</NavLink></li>
+                                        <li>
+                                            <a type="button" className="btn shadow-sm reseller-btn" href="https://reseller.urfashionsbd.com">Reseller</a>
+                                        </li>
                                     </ul>
                                     {/* Mega Menu */}
                                     <div
@@ -135,12 +138,17 @@ const NavBar = () => {
                                     </div>
                                 </div>
                                 {/* Search Component */}
-                                <div className="d-none d-lg-block pl-2 pl-lg-0" style={{ paddingTop: 4 }}>
+                                <div className="d-none d-lg-block pl-2 pl-lg-0 ml-auto" style={{ paddingTop: 4 }}>
                                     <SearchComponent />
                                 </div>
 
+                                {/* Reseller mobile btn */}
+                                <div className="ml-auto d-lg-none">
+                                    <a type="button" className="btn shadow-sm reseller-btn" href="https://reseller.urfashionsbd.com">Reseller</a>
+                                </div>
+
                                 {/* Facebook Button */}
-                                <div className="pr-2 ml-auto">
+                                <div className="px-2">
                                     <div className="cart-box social-box">
                                         <a href={`${facebookURL}`}
                                             type="button"

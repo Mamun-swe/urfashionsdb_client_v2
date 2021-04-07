@@ -49,6 +49,19 @@
                 .is-Active {
                     color: $secondary-color;
                 }
+
+                .reseller-btn {
+                    color: #fff;
+                    padding: 5px 15px !important;
+                    border-radius: 25px;
+                    background: $secondary-color;
+
+                    &:hover {
+                        background: none;
+                        color: $secondary-color;
+                        border: 1px solid $secondary-color;
+                    }
+                }
             }
         }
 
@@ -71,6 +84,23 @@
         // Open Mega Menu
         .open {
             display: block !important;
+        }
+    }
+
+    .reseller-btn {
+        color: #fff;
+        margin-top: 5px;
+        font-size: 13px;
+        font-weight: 700;
+        padding: 5px 15px;
+        border-radius: 25px;
+        text-transform: uppercase;
+        background: $secondary-color;
+
+        &:hover {
+            background: none;
+            color: $secondary-color;
+            border: 1px solid $secondary-color;
         }
     }
 

@@ -126,7 +126,7 @@ const NavBar = () => {
                                         <li><NavLink exact activeClassName="is-Active" to="/contact">contact</NavLink></li>
                                         <li><NavLink exact activeClassName="is-Active" to="/sign-in">my account</NavLink></li>
                                         <li>
-                                            <a type="button" className="btn shadow-sm reseller-btn" href="https://reseller.urfashionsbd.com">Reseller</a>
+                                            <a type="button" className="btn shadow-sm reseller-btn" href="https://urfashionsbd.com/reseller/"  target="_blank" rel="noopener noreferrer">Reseller</a>
                                         </li>
                                     </ul>
                                     {/* Mega Menu */}
@@ -144,7 +144,7 @@ const NavBar = () => {
 
                                 {/* Reseller mobile btn */}
                                 <div className="ml-auto d-lg-none">
-                                    <a type="button" className="btn shadow-sm reseller-btn" href="https://reseller.urfashionsbd.com">Reseller</a>
+                                    <a type="button" className="btn shadow-sm reseller-btn"  href="https://urfashionsbd.com/reseller/" target="_blank" rel="noopener noreferrer" >Reseller</a>
                                 </div>
 
                                 {/* Facebook Button */}
